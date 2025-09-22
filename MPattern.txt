@@ -1,0 +1,12 @@
+public class MPattern{
+		static void pattern(int n){
+		for (int i=1; i<=10; i++){
+			for (int j=0; i<i+1; j++){
+			System.out.println("*");
+		}
+		}
+	}
+	public static void main(String[] args){
+		pattern(4);
+	}
+}
