@@ -1,0 +1,54 @@
+//1. Bank Withdrawal Exception
+//
+//Create a custom exception InsufficientFundsException
+//that is thrown when a user tries to withdraw more money than available in their bank account.
+
+
+package Exception;
+
+
+import java.util.Scanner;
+
+public class Bank11 {
+        static class MissingSymbol extends Exception {
+           public MissingSymbol(String m){
+                super(m);
+            }
+        }
+        static class FirstChar extends Exception {
+            public FirstChar(String m){
+                super(m);
+            }
+        }
+    public static void validEmail(String email) throws  MissingSymbol,FirstChar{
+
+        if(!email.contains("@")){
+            throw new MissingSymbol("Must contains @");
+        }
+
+        if(!Character.isLetter(email.charAt(0))){
+            throw new FirstChar("Must contains start  with alpha");
+        }
+
+    }
+    public static void main(String[] args) {
+
+     Scanner sc = new Scanner(System.in);
+
+        System.out.println("enter email");
+
+        String email = sc.next();
+
+        try{
+            validEmail(email);
+        }
+
+        catch(MissingSymbol e2){
+            System.err.println(e2);
+        }
+        catch(FirstChar e3){
+            System.err.println(e3);
+        }
+
+    }
+}
