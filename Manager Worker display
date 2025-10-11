@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+abstract class emp
+{
+    abstract void accept();
+    abstract void display();
+}
+class manager extends emp
+{
+    int mid,mono;
+    String mname;
+    @Override
+    void accept()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter manager id:- ");
+        mid = sc.nextInt();
+        System.out.print("enter manager name:- ");
+        mname = sc.next();
+        System.out.print("enter manager mobile no :- ");
+        mono = sc.nextInt();
+    }
+    void display()
+    {
+        System.out.println("-----manager details-----");
+        System.out.println("manager id :- " + mid);
+        System.out.println("manager name :- " + mname);
+        System.out.println("manager mobile no :- " + mono);
+    }
+}
+class worker extends emp
+{
+    int work_hour;
+    String wname;
+    @Override
+    void accept()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter worker name:- ");
+        wname = sc.next();
+        System.out.print("enter working hour :- ");
+        work_hour = sc.nextInt();
+    }
+    void display()
+    {
+        System.out.println("-----worker details-----");
+        System.out.println("worker name  :- " + wname);
+        System.out.println("manager working hour :- " + work_hour);
+    }
+
+}
+public class case_study_1
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("worker / manager :- ");
+        int ch = sc.nextInt();
+        if(ch == 1)
+        {
+            manager m = new manager();
+            m.accept();
+            m.display();
+        }
+        else if(ch == 2)
+        {
+            worker m = new worker();
+            m.accept();
+            m.display();
+        }
+        else
+        {
+            System.out.println("your choice is wrong");
+        }
+    }
+}
