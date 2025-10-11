@@ -1,0 +1,58 @@
+import java.util.*;
+class get_exep extends Exception
+{
+    public get_exep(String s)
+    {
+        super(s);
+    }
+}
+class product
+{
+    int product_code;
+    String product_name;
+    float product_weight;
+    product()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter product code :- ");
+        product_code = sc.nextInt();
+        System.out.print("enter product name :- ");
+        product_name = sc.next();
+        System.out.print("enter product weight :- ");
+        product_weight = sc.nextInt();
+    }
+    void display() throws get_exep
+    {
+        if(product_weight > 100)
+        {
+            throw new get_exep("you have limited product weight size");
+        }
+        else
+        {
+            System.out.println("product code :- " + product_code);
+            System.out.println("product name :- " + product_name);
+            System.out.println("product weight :- " + product_weight);
+        }
+    }
+}
+public class product_ex 
+{
+    public static void main(String[] args)
+    {
+        product p = new product();
+        try
+        {
+            p.display();
+        }
+        catch(get_exep e)
+        {
+            System.out.println("over weight." + e.getMessage());
+        }
+    }
+}
+/* 
+enter product code :- 1022
+enter product name :- computer
+enter product weight :- 102
+over weight.you have limited product weight size
+*/
