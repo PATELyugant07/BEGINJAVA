@@ -1,0 +1,45 @@
+// Main class to run the program
+public class SimpleThreadExample {
+
+    public static void main(String[] args) {
+        System.out.println("🚀 Main thread is starting.");
+
+        // Create an instance of our task (the code to be run in a new thread)
+        Worker task = new Worker();
+
+        // Create a new Thread object, passing our task to it
+        Thread thread1 = new Thread(task, "Worker-1"); // Give the thread a name
+        Thread thread2 = new Thread(task, "Worker-2");
+
+        // Start the threads. This calls the run() method in a new thread of execution.
+        thread1.start();
+        thread2.start();
+
+        System.out.println("🏁 Main thread has finished its work.");
+    }
+}
+
+/**
+ * This class implements the Runnable interface.
+ * The code inside the run() method will be executed in a separate thread.
+ */
+class Worker implements Runnable {
+
+    @Override
+    public void run() {
+        // This is the entry point for the new thread.
+        for (int i = 1; i <= 5; i++) {
+            // Get the name of the currently running thread and print a message
+            System.out.println("Thread: " + Thread.currentThread().getName() + ", Count: " + i);
+
+            // Pause the thread for 1 second (1000 milliseconds) to simulate work
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                // This block runs if another thread interrupts this one while it's sleeping.
+                System.out.println("Thread " + Thread.currentThread().getName() + " was interrupted.");
+            }
+        }
+        System.out.println("✅ Thread " + Thread.currentThread().getName() + " has completed.");
+    }
+}
