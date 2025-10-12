@@ -1,0 +1,45 @@
+// Main class to run the program
+public class ExtendingThreadExample {
+
+    public static void main(String[] args) {
+        System.out.println("🚀 Main thread is starting.");
+
+        // Create instances of our custom thread class
+        MyThread thread1 = new MyThread("Worker-A");
+        MyThread thread2 = new My_Thread("Worker-B");
+
+        // Start the threads. This allocates a new thread and calls the run() method.
+        thread1.start();
+        thread2.start();
+
+        System.out.println("🏁 Main thread has finished its work.");
+    }
+}
+
+/**
+ * This class creates a thread by extending the java.lang.Thread class.
+ */
+class MyThread extends Thread {
+
+    // Constructor to set the thread's name
+    public MyThread(String name) {
+        super(name); // Pass the name to the Thread superclass constructor
+    }
+
+    @Override
+    public void run() {
+        // This is the entry point for the new thread.
+        for (int i = 1; i <= 5; i++) {
+            // Get the name of the thread and print a message
+            System.out.println("Thread: " + getName() + ", Count: " + i);
+
+            // Pause the thread for 1 second (1000 milliseconds)
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread " + getName() + " was interrupted.");
+            }
+        }
+        System.out.println("✅ Thread " + getName() + " has completed.");
+    }
+}
