@@ -1,0 +1,58 @@
+// Custom Exception for Seat Availability
+class SeatNotAvailableException extends Exception {
+    public SeatNotAvailableException(String message) {
+        super(message);
+    }
+}
+
+// Airline class
+class Airline {
+    private int totalSeats;
+    private int bookedSeats;
+
+    public Airline(int totalSeats) {
+        this.totalSeats = totalSeats;
+        this.bookedSeats = 0;
+    }
+
+    // Method to book seats
+    public void bookSeats(int seats) throws SeatNotAvailableException {
+        if (seats <= 0) {
+            throw new SeatNotAvailableException("Invalid seat number! Must be greater than zero.");
+        }
+        if (bookedSeats + seats > totalSeats) {
+            throw new SeatNotAvailableException("Not enough seats available!");
+        }
+
+        bookedSeats += seats;
+        System.out.println("Successfully booked " + seats + " seat(s).");
+    }
+
+    // Display available seats
+    public void displayAvailableSeats() {
+        System.out.println("Available seats: " + (totalSeats - bookedSeats));
+    }
+}
+
+// Main class
+public class AirlineBooking {
+    public static void main(String[] args) {
+        Airline flight = new Airline(10); // Flight has 10 seats
+
+        try {
+            flight.displayAvailableSeats();
+
+            flight.bookSeats(4); // Book 4 seats
+            flight.bookSeats(3); // Book 3 more
+            flight.bookSeats(5); // Try to book 5 more — will cause exception
+
+        } catch (SeatNotAvailableException e) {
+            System.out.println("Booking Error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        } finally {
+            flight.displayAvailableSeats();
+            System.out.println("Booking process completed.");
+        }
+    }
+}
