@@ -1,0 +1,68 @@
+import java.util.*;
+class t1 extends Thread
+{
+    int n;
+    String mes;
+    t1(int no,String s)
+    {
+        n = no;
+        mes = s;
+    }
+    public void run()
+    {
+        for(int i=0;i<n;i++)
+        {
+            try
+            {
+                Thread.sleep(500);
+                System.out.println(mes);
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error");
+            }
+        }
+    }
+}
+class t2 extends Thread
+{
+    int n;
+    String mes;
+    t2(int no,String s)
+    {
+        n = no;
+        mes = s;
+    }
+    public void run()
+    {
+        for(int i=0;i<n;i++)
+        {
+            try
+            {
+                Thread.sleep(500);
+                System.out.println(mes);
+            }
+            catch(Exception e)
+            {
+                System.out.println("Error");
+            }
+        }
+    }
+}
+public class ques3 
+{
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number for class 1 :- ");
+        int no = sc.nextInt();
+        System.out.println("enter message :- ");
+        String mes = sc.next();
+        System.out.println("enter message for class 2 :- ");
+        String mes1 = sc.next();
+        t1 t = new t1(no, mes);
+        t.start();
+        t2 t0 = new t2(no, mes1);
+        t0.start();
+    }    
+}
