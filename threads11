@@ -1,0 +1,74 @@
+import java.util.*;
+class time extends Thread
+{
+    public void run()
+    {
+        for(int i=1;i<=100;i++)
+        {
+            try
+            {
+                if((i%8)==0)
+                {
+                    Thread.sleep(1000);
+                    System.out.println("number is devided 8 :- " + i);
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("error");
+            }
+        }
+    }
+}
+class even extends Thread
+{
+    public void run()
+    {
+        for(int i=51;i<=100;i++)
+        {
+            try
+            {
+                if((i%2)==0)
+                {
+                    Thread.sleep(1000);
+                    System.out.println("number even :- " + i);
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("error");
+            }
+        }
+    }
+}
+class java1 extends Thread
+{
+    public void run()
+    {
+        for(int i=0;i<10;i++)
+        {
+            try
+            {
+                Thread.sleep(1000);
+                System.out.println("jAVA");
+            }
+            catch(Exception e)
+            {
+                System.out.println("error");
+            }
+        }
+    }
+}
+public class ques1 
+{
+    public static void main(String[] args)
+    {
+        time t = new time();
+        t.start();
+        even e = new even();
+        e.start();
+        java1 j = new java1();
+        j.start();
+
+    }    
+}
