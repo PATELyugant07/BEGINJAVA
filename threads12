@@ -1,0 +1,57 @@
+class alpha extends Thread
+{
+    public void run()
+    {
+        for(int i=0;i<50;i++)
+        {
+            for(char ch = 'A';ch <='Z';ch++)
+            {
+                try
+                {
+                    Thread.sleep(500);
+                    System.out.println("character :- " + ch);
+                }
+                catch(Exception e)
+                {
+                    System.out.println("error");
+                }
+            }
+        }
+    }
+}
+class fibbo extends Thread
+{
+    public void run()
+    {
+        int num1 = 0;
+        int num2 = 1;
+        int ans = 0;
+        System.out.println("fibbonacci series :- " + num1);
+        System.out.println("fibbonacci series :- " + num2);
+        for(int i=0;i<13;i++)
+        {
+            try
+            {
+                ans = num1 + num2;
+                Thread.sleep(500);
+                System.out.println("fibbonacci series :- " + ans);
+                num1 = num2;
+                num2 = ans;
+            }
+            catch(Exception e)
+            {
+                System.out.println("erroe");
+            }
+        }
+    }
+}
+public class ques2 
+{
+    public static void main(String[] args)
+    {
+        alpha a = new alpha();
+        a.start();
+        fibbo f = new fibbo();
+        f.start();
+    }    
+}
